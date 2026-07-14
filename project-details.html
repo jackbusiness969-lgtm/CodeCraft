@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Details | CODE CRAFT</title>
+    <meta name="description" content="Full project details, screenshots, and pricing from CODE CRAFT's project store." />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Lightbox Modal Styles -->
+    <style>
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 6, 22, 0.95);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            object-fit: contain;
+        }
+        .lightbox-modal.active .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        .lightbox-close:hover {
+            color: var(--accent, #c084fc);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .details-gallery-zoom-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(15, 11, 28, 0.75);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+        .details-gallery-zoom-btn:hover {
+            background: var(--accent, #c084fc);
+            border-color: var(--accent, #c084fc);
+            transform: translateY(-2px);
+        }
+        #details-gallery-img {
+            cursor: zoom-in;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== PRELOADER ====== -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- ====== SCROLL PROGRESS ====== -->
+    <div id="scroll-progress"></div>
+
+    <!-- ====== CUSTOM GLOW ====== -->
+    <div id="custom-glow"></div>
+
+    <!-- ====== PARTICLES CANVAS ====== -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ====== ADMIN BAR ====== -->
+    <div id="admin-bar">
+        <span><i class="fa-solid fa-lock-open"></i> Admin Mode</span>
+        <button class="btn" id="admin-exit-btn"><i class="fa-solid fa-sign-out-alt"></i> Exit</button>
+    </div>
+
+    <!-- ====== HEADER / NAVIGATION ====== -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a class="logo" id="admin-trigger" href="index.html">CODE<span>CRAFT</span></a>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle navigation menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#projects" class="active">Store</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ====== PROJECT DETAILS SECTION ====== -->
+    <section class="section-padding" id="project-details" style="padding-top:120px;">
+
+        <a href="index.html#projects" class="btn btn-secondary details-back-btn reveal">
+            <i class="fa-solid fa-arrow-left"></i> Back to Store
+        </a>
+
+        <!-- Populated by JavaScript -->
+        <div id="details-content" class="details-grid" style="display:none;">
+            <div class="reveal">
+                <div class="details-gallery-main" id="details-gallery-main" style="position: relative;">
+                    <img id="details-gallery-img" src="" alt="" />
+                    <span class="details-gallery-counter" id="details-gallery-counter"></span>
+                    
+                    <!-- Zoom Button Inside Gallery Container -->
+                    <button class="details-gallery-zoom-btn" id="details-gallery-zoom" aria-label="Zoom image">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> Zoom Image
+                    </button>
+                    
+                    <button class="details-gallery-nav details-gallery-prev" id="details-gallery-prev" aria-label="Previous screenshot"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="details-gallery-nav details-gallery-next" id="details-gallery-next" aria-label="Next screenshot"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div class="details-thumbs" id="details-thumbs"></div>
+            </div>
+
+            <div class="details-info glass-panel reveal" style="padding:35px;">
+                <span class="project-badge badge-static" id="details-badge"></span>
+                <h1 id="details-title"></h1>
+                <div class="project-tech details-tech" id="details-tech"></div>
+                
+                <p class="details-full-desc" id="details-full-desc" style="white-space: pre-wrap; line-height: 1.6;"></p>
+                
+                <div class="project-price details-price" id="details-price" style="display: flex; align-items: center; gap: 15px; margin: 20px 0;"></div>
+                
+                <div class="details-actions">
+                    <a href="#" target="_blank" class="btn btn-buy" id="details-contact-btn">
+                        <i class="fa-brands fa-telegram"></i> Contact / Buy Now
+                    </a>
+                    <a href="index.html#projects" class="btn btn-secondary">
+                        <i class="fa-solid fa-store"></i> Browse More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="details-not-found" class="details-not-found reveal glass-panel" style="display:none;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h2>Project Not Found</h2>
+            <p>This project may have been removed or the link is incorrect.</p>
+            <a href="index.html#projects" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Back to Store</a>
+        </div>
+    </section>
+
+    <!-- ====== FULLSCREEN LIGHTBOX MODAL ====== -->
+    <div class="lightbox-modal" id="lightbox-modal">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Enlarged screenshot view" />
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>CODE<span style="color:var(--primary-light);">CRAFT</span></h3>
+                <p>Engineering premium digital experiences for web and mobile. We turn complex ideas into elegant, high-performance solutions.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="index.html#services">Custom Websites</a></li>
+                    <li><a href="index.html#services">Admin Panels</a></li>
+                    <li><a href="index.html#services">Firebase Integration</a></li>
+                    <li><a href="index.html#services">Android WebView Apps</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#projects">Store</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 CODE CRAFT. All rights reserved.</span>
+            <span>Built with <i class="fa-solid fa-heart" style="color:var(--accent);"></i> in San Francisco</span>
+        </div>
+    </footer>
+
+    <!-- ====== BACK TO TOP BUTTON ====== -->
+    <button id="back-to-top" aria-label="Return to Scroll View Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script src="projects-data.js"></script>
+    <script src="common.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            var currentProject = null;
+            var currentImageIndex = 0;
+
+            var lightbox = document.getElementById('lightbox-modal');
+            var lightboxImg = document.getElementById('lightbox-img');
+            var mainGalleryImg = document.getElementById('details-gallery-img');
+
+            function getIdFromUrl() {
+                var params = new URLSearchParams(window.location.search);
+                return params.get('id');
+            }
+
+            function getImages(proj) {
+                var imgs = (proj.screenshots && proj.screenshots.length) ? proj.screenshots : [proj.thumbnail];
+                return imgs.filter(Boolean);
+            }
+
+            function openZoom() {
+                if (!mainGalleryImg.src) return;
+                lightboxImg.src = mainGalleryImg.src;
+                lightbox.classList.add('active');
+            }
+
+            function closeZoom() {
+                lightbox.classList.remove('active');
+            }
+
+            function renderGallery() {
+                var images = getImages(currentProject);
+                var img = document.getElementById('details-gallery-img');
+                img.src = images[currentImageIndex] || '';
+                img.alt = (currentProject.title || 'Project') + ' screenshot ' + (currentImageIndex + 1);
+
+                var counter = document.getElementById('details-gallery-counter');
+                counter.textContent = (currentImageIndex + 1) + ' / ' + images.length;
+                counter.style.display = images.length > 1 ? 'block' : 'none';
+
+                var prevBtn = document.getElementById('details-gallery-prev');
+                var nextBtn = document.getElementById('details-gallery-next');
+                prevBtn.style.display = images.length > 1 ? 'flex' : 'none';
+                nextBtn.style.display = images.length > 1 ? 'flex' : 'none';
+
+                var thumbsWrap = document.getElementById('details-thumbs');
+                thumbsWrap.innerHTML = '';
+                if (images.length > 1) {
+                    images.forEach(function (src, i) {
+                        var thumb = document.createElement('div');
+                        thumb.className = 'details-thumb' + (i === currentImageIndex ? ' active' : '');
+                        var thumbImg = document.createElement('img');
+                        thumbImg.src = src;
+                        thumbImg.alt = 'Screenshot ' + (i + 1) + ' thumbnail';
+                        thumb.appendChild(thumbImg);
+                        thumb.addEventListener('click', function () {
+                            currentImageIndex = i;
+                            renderGallery();
+                        });
+                        thumbsWrap.appendChild(thumb);
+                    });
+                }
+            }
+
+            function renderDetails(proj) {
+                currentProject = proj;
+                currentImageIndex = 0;
+
+                document.title = proj.title + ' | CODE CRAFT';
+                document.getElementById('details-badge').textContent = proj.category || 'Project';
+                document.getElementById('details-title').textContent = proj.title || 'Untitled';
+                document.getElementById('details-full-desc').textContent = proj.fullDescription || proj.shortDescription || '';
+
+                var techWrap = document.getElementById('details-tech');
+                techWrap.innerHTML = '';
+                (proj.tech || []).forEach(function (t) {
+                    var pill = document.createElement('span');
+                    pill.className = 'tech-pill';
+                    pill.textContent = t;
+                    techWrap.appendChild(pill);
+                });
+
+                var priceEl = document.getElementById('details-price');
+                priceEl.innerHTML = ''; 
+                
+                if (proj.oldPrice && proj.newPrice) {
+                    priceEl.classList.remove('hidden');
+
+                    var oldPriceSpan = document.createElement('span');
+                    oldPriceSpan.style.textDecoration = 'line-through';
+                    oldPriceSpan.style.color = '#94a3b8'; 
+                    oldPriceSpan.style.fontSize = '0.85em';
+                    oldPriceSpan.textContent = proj.oldPrice;
+
+                    var newPriceSpan = document.createElement('span');
+                    newPriceSpan.style.color = 'var(--accent, #c084fc)';
+                    newPriceSpan.style.fontWeight = '700';
+                    newPriceSpan.style.fontSize = '1.3em';
+                    newPriceSpan.textContent = proj.newPrice;
+
+                    priceEl.appendChild(oldPriceSpan);
+                    priceEl.appendChild(newPriceSpan);
+                } else if (proj.newPrice || proj.price) {
+                    priceEl.classList.remove('hidden');
+                    priceEl.textContent = proj.newPrice || proj.price;
+                } else {
+                    priceEl.classList.add('hidden');
+                }
+
+                var contactBtn = document.getElementById('details-contact-btn');
+                contactBtn.href = proj.contactLink || 'https://t.me/imdevloper';
+
+                renderGallery();
+
+                document.getElementById('details-content').style.display = '';
+                document.getElementById('details-not-found').style.display = 'none';
+
+                if (window.revealObserver) {
+                    document.querySelectorAll('.reveal').forEach(function (el) {
+                        if (el.classList.contains('active')) return;
+                        window.revealObserver.observe(el);
+                    });
+                }
+            }
+
+            function showNotFound() {
+                document.getElementById('details-content').style.display = 'none';
+                document.getElementById('details-not-found').style.display = '';
+            }
+
+            // Navigation and Interactive Event Listeners
+            document.getElementById('details-gallery-prev').addEventListener('click', function () {
+                var images = getImages(currentProject);
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                renderGallery();
+            });
+            document.getElementById('details-gallery-next').addEventListener('click', function () {
+                var images = getImages(currentProject);
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                renderGallery();
+            });
+            
+            // Lightbox triggers
+            document.getElementById('details-gallery-zoom').addEventListener('click', openZoom);
+            mainGalleryImg.addEventListener('click', openZoom);
+            document.getElementById('lightbox-close').addEventListener('click', closeZoom);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) closeZoom();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeZoom();
+                if (!currentProject) return;
+                if (e.key === 'ArrowLeft') document.getElementById('details-gallery-prev').click();
+                if (e.key === 'ArrowRight') document.getElementById('details-gallery-next').click();
+            });
+
+            window.addEventListener('load', function () {
+                var projects = ProjectsStore.loadProjects();
+                var id = getIdFromUrl();
+                var proj = id ? ProjectsStore.getById(projects, id) : null;
+                if (proj) {
+                    renderDetails(proj);
+                } else {
+                    showNotFound();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

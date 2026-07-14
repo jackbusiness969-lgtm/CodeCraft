@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CODE CRAFT | Project Store</title>
+    <meta name="description" content="Premium software development agency specializing in custom websites, admin panels, Firebase integration, and Android WebView apps." />
+    <meta name="keywords" content="Website Development, Android App, Firebase, Admin Panel, UI/UX, Portfolio, Custom Dashboard" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div id="scroll-progress"></div>
+
+    <div id="custom-glow"></div>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <div id="admin-bar">
+        <span><i class="fa-solid fa-lock-open"></i> Admin Mode</span>
+        <button class="btn" id="admin-exit-btn"><i class="fa-solid fa-sign-out-alt"></i> Exit</button>
+    </div>
+
+    <header id="main-header">
+        <div class="nav-container">
+            <div class="logo" id="admin-trigger">CODE<span>CRAFT</span></div>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle navigation menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Store</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero section-padding" id="hero">
+        <div class="hero-content">
+            <h1>Build <span>Digital Excellence</span> with Code Craft</h1>
+            <p>
+                We engineer premium websites, admin dashboards, Firebase-powered backends,
+                and high-performance Android WebView apps — all under one roof.
+            </p>
+            <div class="btn-group">
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-store"></i> Browse Store</a>
+                <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-message"></i> Start a Project</a>
+            </div>
+        </div>
+        <div class="glow-circle" style="top:-100px;right:-100px;"></div>
+        <div class="glow-circle" style="bottom:-100px;left:-100px;"></div>
+    </section>
+
+    <section class="section-padding" id="about" style="padding-top:60px;">
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <h3>Crafting Digital Systems that Scale</h3>
+                <p>
+                    CODE CRAFT is a boutique development agency obsessed with quality.
+                    We blend cutting-edge front-end experiences with robust back-end
+                    architectures. From pixel-perfect UIs to secure Firebase integrations,
+                    we deliver solutions that perform at scale.
+                </p>
+                <div class="capability-tags">
+                    <span class="tag">UI/UX Design</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">Android WebView</span>
+                    <span class="tag">Admin Dashboards</span>
+                    <span class="tag">Performance Tuning</span>
+                    <span class="tag">Custom APIs</span>
+                </div>
+            </div>
+            <div class="stats-grid reveal">
+                <div class="stat-card glass-panel">
+                    <div class="stat-number" data-count="28">0</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-number" data-count="9">0</div>
+                    <div class="stat-label">Client Retention</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label">% Satisfaction</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-number" data-count="4">0</div>
+                    <div class="stat-label">Years of Craft</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="services">
+        <h2 class="section-title reveal">What We <span>Deliver</span></h2>
+        <div class="services-grid">
+            <div class="service-card glass-panel reveal">
+                <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+                <h3>Custom Websites</h3>
+                <p>Responsive, lightning-fast websites built with modern HTML, CSS, and JavaScript — optimized for every device.</p>
+            </div>
+            <div class="service-card glass-panel reveal">
+                <div class="service-icon"><i class="fa-solid fa-table-columns"></i></div>
+                <h3>Admin Panels</h3>
+                <p>Powerful control dashboards with real-time data visualization, user management, and advanced analytics.</p>
+            </div>
+            <div class="service-card glass-panel reveal">
+                <div class="service-icon"><i class="fa-solid fa-fire"></i></div>
+                <h3>Firebase Integration</h3>
+                <p>Seamless authentication, Firestore databases, cloud functions, and real-time sync for your web and mobile apps.</p>
+            </div>
+            <div class="service-card glass-panel reveal">
+                <div class="service-icon"><i class="fa-brands fa-android"></i></div>
+                <h3>Android WebView Apps</h3>
+                <p>Native Android wrappers that turn your web apps into high-performance mobile experiences with full hardware access.</p>
+            </div>
+            <div class="service-card glass-panel reveal">
+                <div class="service-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+                <h3>UI/UX Design</h3>
+                <p>Pixel-perfect, user-centered designs that elevate your brand and drive engagement from the first glance.</p>
+            </div>
+            <div class="service-card glass-panel reveal">
+                <div class="service-icon"><i class="fa-solid fa-cloud"></i></div>
+                <h3>Cloud &amp; DevOps</h3>
+                <p>Deployment pipelines, CI/CD, and cloud infrastructure setup to keep your applications scalable and secure.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="projects" style="padding-top:60px;">
+        <h2 class="section-title reveal">Project <span>Store</span></h2>
+        <p class="store-intro reveal">
+            Browse our premium gaming & esports platforms. Click <strong>"View Details"</strong> for full screenshots, descriptions, and pricing structure.
+        </p>
+        <div class="projects-grid" id="projects-grid">
+            </div>
+        <div class="add-project-card glass-panel reveal" id="add-project-card">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Add New Project</span>
+        </div>
+    </section>
+
+    <section class="section-padding" id="technologies" style="padding-top:40px;">
+        <h2 class="section-title reveal">Tech Stack <span>&amp; Advantage</span></h2>
+
+        <div class="tech-container reveal">
+            <div class="tech-card glass-panel"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
+            <div class="tech-card glass-panel"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span></div>
+            <div class="tech-card glass-panel"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+            <div class="tech-card glass-panel"><i class="fa-brands fa-firebase"></i><span>Firebase</span></div>
+            <div class="tech-card glass-panel"><i class="fa-brands fa-android"></i><span>Android</span></div>
+            <div class="tech-card glass-panel"><i class="fa-solid fa-cloud"></i><span>Cloud</span></div>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card glass-panel reveal">
+                <i class="fa-solid fa-gem"></i>
+                <h3>Premium Quality</h3>
+                <p>Every line of code is written with precision, ensuring durability and a polished user experience.</p>
+            </div>
+            <div class="why-card glass-panel reveal">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Lightning Speed</h3>
+                <p>Optimized assets, lazy loading, and efficient rendering — your users will never wait.</p>
+            </div>
+            <div class="why-card glass-panel reveal">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Secure by Design</h3>
+                <p>Security baked in from the start — authentication, data validation, and encryption best practices.</p>
+            </div>
+            <div class="why-card glass-panel reveal">
+                <i class="fa-solid fa-headset"></i>
+                <h3>Dedicated Support</h3>
+                <p>We're with you beyond launch — maintenance, updates, and continuous improvement.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="contact">
+        <h2 class="section-title reveal">Let's <span>Connect</span></h2>
+        <div class="contact-simple reveal">
+            <p>Have a project in mind? Reach out to me directly on Telegram and let's bring your idea to life.</p>
+            <a href="https://t.me/imdevloper" target="_blank" class="telegram-btn">
+                <i class="fa-brands fa-telegram"></i> @imdevloper
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>CODE<span style="color:var(--primary-light);">CRAFT</span></h3>
+                <p>Engineering premium digital experiences for web and mobile. We turn complex ideas into elegant, high-performance solutions.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Custom Websites</a></li>
+                    <li><a href="#services">Admin Panels</a></li>
+                    <li><a href="#services">Firebase Integration</a></li>
+                    <li><a href="#services">Android WebView Apps</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#projects">Store</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 CODE CRAFT. All rights reserved.</span>
+            <span>Built with <i class="fa-solid fa-heart" style="color:var(--accent);"></i> in San Francisco</span>
+        </div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Return to Scroll View Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script src="projects-data.js"></script>
+    <script src="common.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            var projects = [];
+            var grid = document.getElementById('projects-grid');
+
+            function loadAndRender() {
+                projects = ProjectsStore.loadProjects();
+                renderProjects();
+            }
+
+            function renderProjects() {
+                if (!grid) return;
+                grid.innerHTML = '';
+
+                projects.forEach(function (proj, index) {
+                    var card = document.createElement('div');
+                    card.className = 'project-card glass-panel reveal';
+                    card.dataset.index = index;
+                    card.dataset.id = proj.id;
+
+                    // Thumbnail
+                    var imgWrapper = document.createElement('div');
+                    imgWrapper.className = 'project-img-wrapper';
+                    var badge = document.createElement('span');
+                    badge.className = 'project-badge';
+                    badge.textContent = proj.category || 'Project';
+                    var img = document.createElement('img');
+                    img.className = 'lazy-img';
+                    img.setAttribute('data-src', proj.thumbnail || '');
+                    img.alt = proj.title || 'Project thumbnail';
+                    imgWrapper.appendChild(badge);
+                    imgWrapper.appendChild(img);
+
+                    // Info
+                    var info = document.createElement('div');
+                    info.className = 'project-info';
+
+                    var title = document.createElement('h3');
+                    title.textContent = proj.title || 'Untitled';
+
+                    var techDiv = document.createElement('div');
+                    techDiv.className = 'project-tech';
+                    (proj.tech || []).forEach(function (t) {
+                        var pill = document.createElement('span');
+                        pill.className = 'tech-pill';
+                        pill.textContent = t;
+                        techDiv.appendChild(pill);
+                    });
+
+                    // Short description
+                    var desc = document.createElement('p');
+                    desc.className = 'project-desc clamp';
+                    desc.textContent = proj.shortDescription || '';
+
+                    // Actions — "View Details" button (Price removed from main dashboard)
+                    var actions = document.createElement('div');
+                    actions.className = 'project-actions';
+
+                    var detailsBtn = document.createElement('a');
+                    detailsBtn.className = 'btn btn-primary';
+                    detailsBtn.innerHTML = '<i class="fa-solid fa-circle-info"></i> View Details';
+                    detailsBtn.href = 'project-details.html?id=' + encodeURIComponent(proj.id);
+                    window.attachRipple && window.attachRipple(detailsBtn);
+
+                    actions.appendChild(detailsBtn);
+
+                    info.appendChild(title);
+                    if ((proj.tech || []).length) info.appendChild(techDiv);
+                    info.appendChild(desc);
+                    info.appendChild(actions);
+
+                    // Admin edit controls
+                    var editControls = document.createElement('div');
+                    editControls.className = 'admin-edit-controls';
+                    editControls.dataset.index = index;
+
+                    var fields = [
+                        { label: 'Title', key: 'title', type: 'text' },
+                        { label: 'Category', key: 'category', type: 'text' },
+                        { label: 'Thumbnail URL', key: 'thumbnail', type: 'text' },
+                        { label: 'Screenshot URLs (comma separated)', key: 'screenshots', type: 'textarea' },
+                        { label: 'Short Description (card)', key: 'shortDescription', type: 'textarea' },
+                        { label: 'Full Description (details page)', key: 'fullDescription', type: 'textarea' },
+                        { label: 'Old Price (with currency symbol)', key: 'oldPrice', type: 'text' },
+                        { label: 'New Price (with currency symbol)', key: 'newPrice', type: 'text' },
+                        { label: 'Contact / WhatsApp Link', key: 'contactLink', type: 'text' }
+                    ];
+
+                    fields.forEach(function (field) {
+                        var wrapper = document.createElement('div');
+                        wrapper.className = 'edit-field';
+                        var label = document.createElement('label');
+                        label.textContent = field.label;
+                        var input;
+                        if (field.type === 'textarea') {
+                            input = document.createElement('textarea');
+                            input.rows = 2;
+                            var value = proj[field.key];
+                            if (Array.isArray(value)) value = value.join(', ');
+                            input.value = value || '';
+                        } else {
+                            input = document.createElement('input');
+                            input.type = 'text';
+                            input.value = proj[field.key] || '';
+                        }
+                        input.dataset.field = field.key;
+                        wrapper.appendChild(label);
+                        wrapper.appendChild(input);
+                        editControls.appendChild(wrapper);
+                    });
+
+                    var editActionsRow = document.createElement('div');
+                    editActionsRow.className = 'edit-actions-row';
+
+                    var deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn btn-danger';
+                    deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Delete';
+                    deleteBtn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        deleteProject(index);
+                    });
+
+                    var saveBtn = document.createElement('button');
+                    saveBtn.className = 'btn btn-admin';
+                    saveBtn.innerHTML = '<i class="fa-solid fa-save"></i> Save Changes';
+                    saveBtn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        saveProjectFromCard(card);
+                    });
+
+                    editActionsRow.appendChild(deleteBtn);
+                    editActionsRow.appendChild(saveBtn);
+                    editControls.appendChild(editActionsRow);
+
+                    info.appendChild(editControls);
+                    card.appendChild(imgWrapper);
+                    card.appendChild(info);
+                    grid.appendChild(card);
+                });
+
+                window.lazyLoadImages && window.lazyLoadImages();
+                if (window.revealObserver) {
+                    document.querySelectorAll('.reveal').forEach(function (el) {
+                        if (el.classList.contains('active')) return;
+                        window.revealObserver.observe(el);
+                    });
+                }
+                if (window.isAdminActive && window.isAdminActive()) {
+                    document.querySelectorAll('.admin-edit-controls').forEach(function (el) { el.classList.add('active'); });
+                }
+            }
+
+            function saveProjectFromCard(card) {
+                var index = parseInt(card.dataset.index, 10);
+                if (isNaN(index) || index >= projects.length) return;
+                var editControls = card.querySelector('.admin-edit-controls');
+                if (!editControls) return;
+
+                var inputs = editControls.querySelectorAll('input, textarea');
+                var updated = Object.assign({}, projects[index]);
+                inputs.forEach(function (input) {
+                    var key = input.dataset.field;
+                    var val = input.value;
+                    if (key === 'screenshots') {
+                        val = val.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+                    }
+                    updated[key] = val;
+                });
+                projects[index] = updated;
+                ProjectsStore.saveProjects(projects);
+                renderProjects();
+
+                var savedCard = grid.querySelector('.project-card[data-index="' + index + '"]');
+                var btn = savedCard && savedCard.querySelector('.admin-edit-controls .btn-admin');
+                if (btn) {
+                    var orig = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
+                    setTimeout(function () { btn.innerHTML = orig; }, 1200);
+                }
+            }
+
+            function deleteProject(index) {
+                if (index < 0 || index >= projects.length) return;
+                var proj = projects[index];
+                var ok = window.confirm('Delete "' + (proj.title || 'this project') + '"? This cannot be undone.');
+                if (!ok) return;
+                projects.splice(index, 1);
+                ProjectsStore.saveProjects(projects);
+                renderProjects();
+            }
+
+            function addNewProject() {
+                var maxId = projects.reduce(function (max, p) { return Math.max(max, Number(p.id) || 0); }, 0);
+                var newProject = {
+                    id: maxId + 1,
+                    title: 'New Project',
+                    category: 'Web Application',
+                    shortDescription: 'Add a short description.',
+                    fullDescription: 'Add complete details.',
+                    thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
+                    screenshots: ['https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80'],
+                    tech: [],
+                    oldPrice: '',
+                    newPrice: '',
+                    contactLink: 'https://t.me/imdevloper'
+                };
+                projects.push(newProject);
+                ProjectsStore.saveProjects(projects);
+                renderProjects();
+
+                var newCard = grid.querySelector('.project-card[data-id="' + newProject.id + '"]');
+                if (newCard) {
+                    newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    var controls = newCard.querySelector('.admin-edit-controls');
+                    if (controls) controls.classList.add('active');
+                }
+            }
+
+            var addProjectCard = document.getElementById('add-project-card');
+            if (addProjectCard) {
+                addProjectCard.addEventListener('click', addNewProject);
+            }
+
+            function syncAddCardVisibility(active) {
+                if (addProjectCard) addProjectCard.classList.toggle('active', !!active);
+            }
+
+            document.addEventListener('admin-mode-change', function (e) {
+                document.querySelectorAll('.admin-edit-controls').forEach(function (el) {
+                    el.classList.toggle('active', e.detail.active);
+                });
+                syncAddCardVisibility(e.detail.active);
+            });
+
+            window.addEventListener('load', function () {
+                loadAndRender();
+                setTimeout(function () { window.lazyLoadImages && window.lazyLoadImages(); }, 200);
+                if (window.isAdminActive) syncAddCardVisibility(window.isAdminActive());
+            });
+        })();
+    </script>
+</body>
+</html>
