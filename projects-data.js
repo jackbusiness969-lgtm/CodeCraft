@@ -21,7 +21,7 @@
             tech: ['HTML5', 'CSS3', 'JavaScript', 'Firebase'],
             oldPrice: '₹3,999',
             newPrice: '₹2,500',
-            contactLink: 'https://t.me/imdevloper'
+            contactLink: 'https://telegram.me/codecraft77'
         }
     ];
 
